@@ -20,8 +20,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Set up Maven
-        uses: ./.github/actions/setup-maven
       - name: Cache Maven packages
         uses: actions/cache@v4
         with:
@@ -63,7 +61,7 @@ jobs:
           EOSETTINGS
       - name: Run MUnit Tests
         working-directory: ridexpress-experience-api
-        run: mvn clean test -Dsecrets.path=test-secrets.properties
+        run: ../mvnw clean test -Dsecrets.path=test-secrets.properties
 
   test-database-system-api:
     name: "MUnit: database-system-api"
@@ -75,8 +73,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Set up Maven
-        uses: ./.github/actions/setup-maven
       - name: Cache Maven packages
         uses: actions/cache@v4
         with:
@@ -118,7 +114,7 @@ jobs:
           EOSETTINGS
       - name: Run MUnit Tests
         working-directory: database-system-api
-        run: mvn clean test -Dsecrets.path=test-secrets.properties
+        run: ../mvnw clean test -Dsecrets.path=test-secrets.properties
 
   test-rides-process-async-api:
     name: "MUnit: rides-process-async-api"
@@ -130,8 +126,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Set up Maven
-        uses: ./.github/actions/setup-maven
       - name: Cache Maven packages
         uses: actions/cache@v4
         with:
@@ -173,7 +167,7 @@ jobs:
           EOSETTINGS
       - name: Run MUnit Tests
         working-directory: rides-process-async-api
-        run: mvn clean test -Dsecrets.path=test-secrets.properties
+        run: ../mvnw clean test -Dsecrets.path=test-secrets.properties
 
   test-process-apis:
     name: "MUnit: Process APIs"
@@ -195,8 +189,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Set up Maven
-        uses: ./.github/actions/setup-maven
       - name: Cache Maven packages
         uses: actions/cache@v4
         with:
@@ -238,7 +230,7 @@ jobs:
           EOSETTINGS
       - name: Run MUnit Tests
         working-directory: ${{ matrix.api }}
-        run: mvn clean test -Dsecrets.path=test-secrets.properties
+        run: ../mvnw clean test -Dsecrets.path=test-secrets.properties
 
   test-system-apis:
     name: "MUnit: System APIs"
@@ -260,8 +252,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Set up Maven
-        uses: ./.github/actions/setup-maven
       - name: Cache Maven packages
         uses: actions/cache@v4
         with:
@@ -303,4 +293,4 @@ jobs:
           EOSETTINGS
       - name: Run MUnit Tests
         working-directory: ${{ matrix.api }}
-        run: mvn clean test -Dsecrets.path=test-secrets.properties
+        run: ../mvnw clean test -Dsecrets.path=test-secrets.properties

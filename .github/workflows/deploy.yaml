@@ -33,9 +33,6 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
-      - name: Install Maven
-        uses: ./.github/actions/setup-maven
-
       - name: Configure Maven settings
         env:
           ANYPOINT_CLIENT_ID: ${{ secrets.ANYPOINT_CLIENT_ID }}
@@ -129,7 +126,7 @@ jobs:
           fi
           while IFS= read -r ARTIFACT; do
             [[ -z "${ARTIFACT}" ]] && continue
-            mvn -B --no-transfer-progress deploy -f "${ARTIFACT}" -DskipMunitTests
+            ./mvnw -B --no-transfer-progress deploy -f "${ARTIFACT}" -DskipMunitTests
             echo "---"
           done <<< "${APPS}"
 
@@ -149,6 +146,6 @@ jobs:
           fi
           while IFS= read -r ARTIFACT; do
             [[ -z "${ARTIFACT}" ]] && continue
-            mvn -B --no-transfer-progress deploy -Pcloudhub2-deploy -DmuleDeploy -f "${ARTIFACT}" -DskipTests
+            ./mvnw -B --no-transfer-progress deploy -Pcloudhub2-deploy -DmuleDeploy -f "${ARTIFACT}" -DskipTests
             echo "---"
           done <<< "${APPS}"

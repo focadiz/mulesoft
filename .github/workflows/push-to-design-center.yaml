@@ -20,8 +20,6 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '17'
-      - name: Install Maven
-        uses: ./.github/actions/setup-maven
       - run: echo "Setup completed"
       - name: Upload Design Center Projects
         env:
